@@ -1,0 +1,244 @@
+/* Privacy Policy Page Styles */
+
+/* Main layout structure */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Privacy Container */
+.privacy-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+/* Privacy Header */
+.privacy-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.privacy-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.privacy-header p {
+  color: var(--dark-gray);
+  font-size: 1.1rem;
+}
+
+/* Privacy Content */
+.privacy-content {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+/* Sections */
+.privacy-section {
+  margin-bottom: 2.5rem;
+}
+
+.privacy-section:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--medium-gray);
+}
+
+.privacy-section h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.privacy-section h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.privacy-section p {
+  color: var(--dark-gray);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Lists */
+.privacy-section ul,
+.privacy-section ol {
+  margin: 1rem 0;
+  margin-left: 2rem;
+  color: var(--dark-gray);
+}
+
+.privacy-section li {
+  margin-bottom: 0.75rem;
+  line-height: 1.8;
+}
+
+/* Links */
+.privacy-section a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.privacy-section a:hover {
+  text-decoration: underline;
+}
+
+/* Data Table */
+.privacy-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background-color: white;
+}
+
+.privacy-table thead {
+  background-color: var(--light-gray);
+}
+
+.privacy-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--medium-gray);
+}
+
+.privacy-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--medium-gray);
+  color: var(--dark-gray);
+}
+
+.privacy-table tr:hover {
+  background-color: var(--light-gray);
+}
+
+/* Back to Home Button */
+.back-to-home {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.back-to-home a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition);
+}
+
+.back-to-home a:hover {
+  background-color: rgba(67, 97, 238, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Back to home at bottom */
+.privacy-container > .back-to-home:last-child {
+  margin-top: 2rem;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 768px) {
+  .privacy-container {
+    margin: 1.5rem auto;
+    padding: 1rem;
+  }
+
+  .privacy-header h1 {
+    font-size: 2rem;
+  }
+
+  .privacy-content {
+    padding: 1.5rem;
+  }
+
+  .privacy-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .privacy-section p {
+    text-align: left;
+  }
+
+  .privacy-table {
+    font-size: 0.9rem;
+  }
+
+  .privacy-table th,
+  .privacy-table td {
+    padding: 0.5rem;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 480px) {
+  .privacy-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .privacy-section h2 {
+    font-size: 1.1rem;
+  }
+
+  .privacy-section h3 {
+    font-size: 1rem;
+  }
+
+  .privacy-section h4 {
+    font-size: 0.95rem;
+  }
+
+  .privacy-container {
+    margin: 1rem auto;
+    padding: 0.75rem;
+  }
+
+  .privacy-content {
+    padding: 1rem;
+  }
+
+  .back-to-home a {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .privacy-table {
+    font-size: 0.8rem;
+  }
+
+  .privacy-table th,
+  .privacy-table td {
+    padding: 0.4rem;
+  }
+}

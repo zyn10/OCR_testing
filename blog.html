@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Meta tags -->
+    <title>Blog | Image to Text Converter</title>
+    <meta
+      name="description"
+      content="Stay updated with the latest tips, insights, and trends about OCR technology and text extraction."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./kk.png" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ===== CSS Files ===== -->
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/navbar.css" />
+    <link rel="stylesheet" href="./styles/footer.css" />
+    <link rel="stylesheet" href="./styles/animations.css" />
+    <link rel="stylesheet" href="./styles/blog.css" />
+  </head>
+
+  <body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Blog Container -->
+    <div class="blog-container">
+      <!-- Header -->
+      <div class="blog-header">
+        <h1>Latest Blogs</h1>
+        <p>Stay updated with the latest tips, insights, and trends.</p>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid" id="blogGrid">
+        <!-- Blog posts will be added here dynamically -->
+        <div class="blog-empty">
+          <div class="blog-empty-icon">
+            <i class="fas fa-newspaper"></i>
+          </div>
+          <h2>No Blog Posts Yet</h2>
+          <p>We're working on adding exciting content. Check back soon!</p>
+          <a href="index.html">Back to Home</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Component Loader -->
+    <script src="./js/components.js"></script>
+
+    <!-- Blog Data & Script -->
+    <script>
+      // Blog posts data - Update this array as new blogs are added
+      const blogPosts = [
+        {
+          id: 1,
+          title:
+            "How to Extract Text from Image: Simple and Advanced OCR Methods",
+          excerpt:
+            "Learn how to extract text from image files easily. Discover simple and advanced OCR methods including online converters, Google Drive, and Microsoft Word solutions.",
+          category: "OCR Technology",
+          date: "2026-03-31",
+          author: "OCR Team",
+          readTime: "12 min",
+          image: "./kk.png",
+          link: "blog-post-1.html",
+        },
+      ];
+
+      const blogGrid = document.getElementById("blogGrid");
+
+      function renderBlogs() {
+        if (blogPosts.length === 0) {
+          // Show empty state (already in HTML)
+          return;
+        }
+
+        blogGrid.innerHTML = blogPosts
+          .map(
+            (post) => `
+          <article class="blog-card">
+            <div class="blog-card-image">
+              ${post.image ? `<img src="${post.image}" alt="${post.title}">` : '<i class="fas fa-image blog-card-image-placeholder"></i>'}
+            </div>
+            <div class="blog-card-content">
+              <div class="blog-card-meta">
+                <span class="blog-card-category">${post.category}</span>
+                <span class="blog-card-date">
+                  <i class="fas fa-calendar-alt"></i> ${new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+                </span>
+              </div>
+              <h3>${post.title}</h3>
+              <p>${post.excerpt}</p>
+              <div class="blog-card-footer">
+                <div class="blog-card-author">
+                  <div class="blog-card-author-avatar">${post.author.charAt(0).toUpperCase()}</div>
+                  <span>${post.author}</span>
+                </div>
+                <span class="blog-card-read-time">${post.readTime}</span>
+              </div>
+              <a href="${post.link}" class="blog-card-link">Read More →</a>
+            </div>
+          </article>
+        `,
+          )
+          .join("");
+      }
+
+      // Initial render
+      renderBlogs();
+    </script>
+  </body>
+</html>

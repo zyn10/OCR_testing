@@ -1,0 +1,27 @@
+/* CSS Variables - Design System */
+:root {
+  --primary-color: #4361ee;
+  --primary-light: #4895ef;
+  --secondary-color: #3f37c9;
+  --accent-color: #4cc9f0;
+  --text-color: #333;
+  --light-gray: #f8f9fa;
+  --medium-gray: #e9ecef;
+  --dark-gray: #6c757d;
+  --success-color: #4bb543;
+  --warning-color: #ffcc00;
+  --error-color: #ff3333;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+  --footer-dark: #1a1d29;
+  --footer-darker: #151722;
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --border-radius-full: 50%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

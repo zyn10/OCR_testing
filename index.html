@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Meta tags -->
+    <title>Image to Text Converter | Extract Text from Images with OCR</title>
+    <meta
+      name="description"
+      content="Our free image to text converter helps you quickly extract text from your images, scanned documents and PDF files with just a click."
+    />
+    <meta
+      name="google-site-verification"
+      content="IvYP6t4cF6sKC_bG49PvvYrKZv6NapfyjliCuR_XEJ4"
+    />
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <!-- OCR API Route -->
+    <meta name="ocr-api-url" content="{{ route('imagetotext_get_text') }}" />
+
+    <!-- Gemini API Key (will be passed from backend) -->
+    <meta name="gemini-api-key" content="{{ env('GEMINI_API_KEY') }}" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./kk.png" />
+    <meta
+      name="google-site-verification"
+      content="IvYP6t4cF6sKC_bG49PvvYrKZv6NapfyjliCuR_XEJ4"
+    />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ===== CSS Files ===== -->
+    <!-- Variables and Base Styles -->
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="./styles/navbar.css" />
+    <link rel="stylesheet" href="./styles/hero.css" />
+    <link rel="stylesheet" href="./styles/cards.css" />
+    <link rel="stylesheet" href="./styles/buttons.css" />
+    <link rel="stylesheet" href="./styles/forms.css" />
+    <link rel="stylesheet" href="./styles/sections.css" />
+    <link rel="stylesheet" href="./styles/faq.css" />
+    <link rel="stylesheet" href="./styles/loader.css" />
+    <link rel="stylesheet" href="./styles/footer.css" />
+
+    <!-- Animations -->
+    <link rel="stylesheet" href="./styles/animations.css" />
+
+    <!-- ===== External Libraries ===== -->
+    <!-- SweetAlert for notifications -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-container">
+          <h1 class="hero-title">
+            Image to Text Converter<br />Extract Text from Images with OCR
+          </h1>
+          <p class="hero-subtitle">
+            Extract text from images with just a click using our free tool.
+          </p>
+          <div class="card-modification">
+            <div class="card-body">
+              <!-- Upload Area -->
+              <div id="uploadArea" class="upload-area">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <h3 class="upload-text">Drag & Drop your image here</h3>
+                <p class="text-muted">or click to browse files</p>
+                <input
+                  type="file"
+                  id="fileInput"
+                  class="file-input"
+                  accept="image/png,image/jpg,image/jpeg,image/*,.pdf"
+                />
+              </div>
+
+              <!-- File Info -->
+              <div id="fileInfo" class="file-info hidden">
+                <p><strong>File Information:</strong></p>
+                <p id="fileName">Name:</p>
+                <p id="fileSize">Size:</p>
+                <p id="fileDimensions">Dimensions:</p>
+                <p id="optimizationInfo" class="warning"></p>
+              </div>
+
+              <!-- URL Input -->
+              <div class="url-field">
+                <div class="url-icon">
+                  <i class="fas fa-link"></i>
+                </div>
+                <input
+                  type="url"
+                  id="urlInput"
+                  class="url-input"
+                  placeholder="Or paste image URL here"
+                />
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="d-flex justify-center gap-3 mt-4">
+                <button id="submitBtn" class="btn-primary" disabled>
+                  <i class="fas fa-magic"></i> Extract Text
+                </button>
+                <button id="resetBtn" class="btn-outline">
+                  <i class="fas fa-redo"></i> Reset
+                </button>
+              </div>
+
+              <!-- Preview Section -->
+              <div id="previewSection" class="preview-container hidden">
+                <img
+                  id="imagePreview"
+                  class="image-preview"
+                  src=""
+                  alt="Preview"
+                />
+                <p>Ready to extract text from this image?</p>
+              </div>
+
+              <!-- Loader -->
+              <div id="loaderSection" class="loader-container hidden">
+                <div class="loader-spinner"></div>
+                <p class="loader-text" id="loaderText">
+                  Processing your image...
+                </p>
+                <div class="progress-bar">
+                  <div class="progress-fill" id="progressFill"></div>
+                </div>
+              </div>
+
+              <!-- Results Section -->
+              <div id="resultsSection" class="results-container hidden">
+                <textarea
+                  id="resultsText"
+                  class="results-textarea"
+                  placeholder="Extracted text will appear here..."
+                ></textarea>
+
+                <!-- Download Buttons -->
+                <div class="download-buttons">
+                  <button id="downloadPdfBtn" class="btn-secondary">
+                    <i class="fas fa-file-pdf"></i> Download as PDF
+                  </button>
+                  <button id="downloadWordBtn" class="btn-secondary">
+                    <i class="fas fa-file-word"></i> Download as Word
+                  </button>
+                  <button id="downloadTxtBtn" class="btn-secondary">
+                    <i class="fas fa-file-alt"></i> Download as TXT
+                  </button>
+                </div>
+
+                <div class="d-flex justify-center gap-3">
+                  <button id="copyBtn" class="btn-primary">
+                    <i class="fas fa-copy"></i> Copy Text
+                  </button>
+                  <button id="newExtractionBtn" class="btn-outline">
+                    <i class="fas fa-plus"></i> New Extraction
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <h2 class="section-title">Our Features</h2>
+        <p class="section-subtitle">
+          Experience powerful OCR technology with these amazing features
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <i class="fas fa-dollar-sign feature-icon"></i>
+            <h4 class="feature-title">Free to use</h4>
+            <p>
+              Our OCR image to text extractor is completely free to use. There
+              are no costs associated with signing up and using our tool.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <i class="fas fa-brain feature-icon"></i>
+            <h4 class="feature-title">Smart OCR engine</h4>
+            <p>
+              The OCR engine used by our tool is smart and intelligent. It can
+              accurately extract text from the provided images while making
+              little to no errors.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <i class="fas fa-upload feature-icon"></i>
+            <h4 class="feature-title">Multiple input methods</h4>
+            <p>
+              There are three different ways in which you can input your files
+              into our tool. You can either upload the file from your local
+              storage, drag and drop it from a source, or use the URL feature to
+              fetch the file directly from the internet.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <i class="fas fa-bolt feature-icon"></i>
+            <h4 class="feature-title">Quick results</h4>
+            <p>
+              Our tool provides a quick functionality. You can get your images
+              converted to text in a matter of seconds. You don't have to go
+              through long waits and delays with our tool.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <i class="fas fa-desktop feature-icon"></i>
+            <h4 class="feature-title">Easy-to-use interface</h4>
+            <p>
+              The interface of our tool is very simple and straightforward.
+              Everyone can use it without any difficulty.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <i class="fas fa-mobile-alt feature-icon"></i>
+            <h4 class="feature-title">Compatible on all platforms</h4>
+            <p>
+              You can use our online OCR image to text converter on all
+              platforms, whether it is your mobile, computer, tablet, etc. Since
+              our tool is browser-based, all you require is a working internet
+              browser and a working internet connection.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What is OCR Section -->
+    <section class="features-section">
+      <div class="container">
+        <h2 class="section-title">
+          What is an Online OCR Translator and How Does it Work?
+        </h2>
+        <div class="feature-card" style="max-width: 800px; margin: 0 auto">
+          <p>
+            An <a href="https://www.imagetotext.us/"> online OCR </a> image to
+            text translator is an online tool that helps you extract text from
+            an image or a PDF file. The text extracted from the image or PDF is
+            presented in the form of digital copyable/editable text.
+          </p>
+          <p style="margin-top: 1rem">
+            The technology behind an image-to-text tool is called OCR. It stands
+            for Optical Character Recognition, and it essentially analyzes the
+            text present inside the images before comparing them to Unicode
+            characters stored in a database. By analyzing and comparing the text
+            inside the image/PDF file with Unicode characters, OCR is able to
+            convert it to digital text.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Uses Section -->
+    <section id="uses" class="uses-section">
+      <div class="container">
+        <h2 class="section-title">Uses of Our OCR Image to Text Tool</h2>
+        <p class="section-subtitle">
+          Here are some purposes for which you can use our tool:
+        </p>
+
+        <div class="uses-grid">
+          <div class="use-card">
+            <h4>For students & teachers</h4>
+            <p>
+              Students and teachers can use our tool for many different
+              purposes, such as:
+            </p>
+            <ul>
+              <li>Saving their physical notes in the form of digital files</li>
+              <li>Converting their lecture notes to text for easy sharing</li>
+              <li>
+                Making their study material more accessible and easy to consume
+              </li>
+            </ul>
+            <p style="margin-top: 1rem; font-style: italic">
+              Since our tool is completely free, it is especially suitable for
+              students.
+            </p>
+          </div>
+
+          <div class="use-card">
+            <h4>For office workers & data entry experts</h4>
+            <p>
+              Office workers and data entry experts have to deal with large
+              amounts of data (much of which is present in the form of images or
+              physical documents). Using an image to text converter can help
+              them easily organize, compile, and store the data by changing it
+              all into digital text. If there are physical documents involved,
+              you can simply take a picture of all the required data and then
+              put it through our tool.
+            </p>
+          </div>
+
+          <div class="use-card">
+            <h4>For content creators & marketers</h4>
+            <p>
+              Content creators and marketers can use OCR tools to make their
+              tasks easier. As a content creator, you can convert images of
+              content to digital text so that you can peruse and edit the data
+              easily. As a marketer, image-to-text tools can help you share
+              content in more than one format. You can create images for your
+              marketing campaign and then convert them to text so that you can
+              share both on your marketing channels.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <div class="faq-two-column">
+          <!-- FAQ Items -->
+          <div class="faq-container">
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>How does image to text work?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Image to text conversion works by using a model known as OCR.
+                  OCR recognizes the markings and shapes of the text written
+                  inside images and then it matches them all with a database of
+                  Unicode characters.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Which image formats are supported by your tool?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  You can enter image formats, including JPG, PNG, WebP, etc.,
+                  into our tool. We also support PDF files.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Is OCR accurate?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes, OCR is accurate 95% of the time. However, if you are
+                  converting an image containing handwriting, it is advisable to
+                  carefully read the output to find and remove typos.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Can I use the tool on mobile devices?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes, our tool is fully responsive and works perfectly on all
+                  mobile devices, tablets, and desktop computers.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Is there a limit to how many images I can process?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  No, there are no limits. You can process as many images as you
+                  need completely free of charge.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Do you store my images after processing?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  No, we do not store your images or extracted text. All
+                  processing happens in real-time and files are deleted
+                  immediately after processing.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Image -->
+          <div class="faq-image">
+            <img src="./ee.png" alt="FAQ Illustration" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- ===== JavaScript Files ===== -->
+    <!-- Utility and State Management -->
+    <script src="./js/utils.js"></script>
+
+    <!-- UI Management -->
+    <script src="./js/ui.js"></script>
+
+    <!-- Event Handlers -->
+    <script src="./js/handlers.js"></script>
+
+    <!-- OCR Processing -->
+    <script src="./js/ocr.js"></script>
+
+    <!-- Download Functionality -->
+    <script src="./js/download.js"></script>
+
+    <!-- Main Application -->
+    <script src="./js/app.js"></script>
+
+    <!-- Component Loader -->
+    <script src="./js/components.js"></script>
+  </body>
+</html>

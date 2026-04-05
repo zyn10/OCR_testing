@@ -1,0 +1,184 @@
+/* Terms and Conditions Page Styles */
+
+/* Main layout structure */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Terms Container */
+.terms-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+/* Terms Header */
+.terms-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.terms-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.terms-header p {
+  color: var(--dark-gray);
+  font-size: 1.1rem;
+}
+
+/* Terms Content */
+.terms-content {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+/* Sections */
+.terms-section {
+  margin-bottom: 2.5rem;
+}
+
+.terms-section:last-child {
+  margin-bottom: 0;
+}
+
+.terms-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--medium-gray);
+}
+
+.terms-section h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.terms-section p {
+  color: var(--dark-gray);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Lists */
+.terms-section ul,
+.terms-section ol {
+  margin: 1rem 0;
+  margin-left: 2rem;
+  color: var(--dark-gray);
+}
+
+.terms-section li {
+  margin-bottom: 0.75rem;
+  line-height: 1.8;
+}
+
+/* Links */
+.terms-section a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.terms-section a:hover {
+  text-decoration: underline;
+}
+
+/* Back to Home Button */
+.back-to-home {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.back-to-home a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition);
+}
+
+.back-to-home a:hover {
+  background-color: rgba(67, 97, 238, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Back to home at bottom */
+.terms-container > .back-to-home:last-child {
+  margin-top: 2rem;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 768px) {
+  .terms-container {
+    margin: 1.5rem auto;
+    padding: 1rem;
+  }
+
+  .terms-header h1 {
+    font-size: 2rem;
+  }
+
+  .terms-content {
+    padding: 1.5rem;
+  }
+
+  .terms-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .terms-section p {
+    text-align: left;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 480px) {
+  .terms-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .terms-section h2 {
+    font-size: 1.1rem;
+  }
+
+  .terms-section h3 {
+    font-size: 1rem;
+  }
+
+  .terms-container {
+    margin: 1rem auto;
+    padding: 0.75rem;
+  }
+
+  .terms-content {
+    padding: 1rem;
+  }
+
+  .back-to-home a {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
