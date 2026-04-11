@@ -1,28 +1,15 @@
+<!--</html>-->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Meta tags -->
+    <!-- Meta tags updated with writer's content -->
     <title>Image to Text Converter | Extract Text from Images with OCR</title>
     <meta
       name="description"
       content="Our free image to text converter helps you quickly extract text from your images, scanned documents and PDF files with just a click."
     />
-    <meta
-      name="google-site-verification"
-      content="IvYP6t4cF6sKC_bG49PvvYrKZv6NapfyjliCuR_XEJ4"
-    />
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-
-    <!-- OCR API Route -->
-    <meta name="ocr-api-url" content="{{ route('imagetotext_get_text') }}" />
-
-    <!-- Gemini API Key (will be passed from backend) -->
-    <meta name="gemini-api-key" content="{{ env('GEMINI_API_KEY') }}" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./kk.png" />
@@ -45,11 +32,22 @@
       rel="stylesheet"
     />
 
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <!-- ===== CSS Files ===== -->
     <!-- Variables and Base Styles -->
     <link rel="stylesheet" href="./styles/variables.css" />
     <link rel="stylesheet" href="./styles/base.css" />
-
     <!-- Component Styles -->
     <link rel="stylesheet" href="./styles/navbar.css" />
     <link rel="stylesheet" href="./styles/hero.css" />
@@ -60,23 +58,10 @@
     <link rel="stylesheet" href="./styles/faq.css" />
     <link rel="stylesheet" href="./styles/loader.css" />
     <link rel="stylesheet" href="./styles/footer.css" />
-
-    <!-- Animations -->
-    <link rel="stylesheet" href="./styles/animations.css" />
-
-    <!-- ===== External Libraries ===== -->
-    <!-- SweetAlert for notifications -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- jsPDF for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </head>
 
   <body>
-    <!-- Header Placeholder -->
+    <!-- Navbar -->
     <div id="header-placeholder"></div>
 
     <!-- Hero Section -->
@@ -266,6 +251,102 @@
       </div>
     </section>
 
+    <!-- How-to Section -->
+    <section id="howto" class="howto-section">
+      <div class="container">
+        <h2 class="section-title">How to Use Our Free Online OCR Converter?</h2>
+        <p class="section-subtitle">
+          Here is how you can use our online OCR tool to convert your images to
+          digital text. The required steps are listed below:
+        </p>
+
+        <div class="howto-steps">
+          <div class="howto-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>
+                Simply go to
+                <a href="https://www.imagetotext.us/">imagetotext.us</a>
+              </h4>
+              <p>
+                Search image to text converter and simply click on our tool for
+                quick conversion.
+              </p>
+            </div>
+          </div>
+
+          <div class="howto-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>
+                Drag and drop your required image or PDF document on the tool
+              </h4>
+              <p>
+                Simply drag your file and drop it onto the upload area to get
+                started.
+              </p>
+            </div>
+          </div>
+
+          <div class="howto-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Click on the input box to upload a file from your device</h4>
+              <p>
+                Alternatively, click the upload area to browse and select files
+                from your computer or mobile device.
+              </p>
+            </div>
+          </div>
+
+          <div class="howto-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Enter a URL to get the file directly from the web</h4>
+              <p>
+                If your image is already online, simply paste the URL in the
+                input field.
+              </p>
+            </div>
+          </div>
+
+          <div class="howto-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Click on the "<b>Submit</b>" button to start the process</h4>
+              <p>
+                Once you've selected your file, click the Extract Text button to
+                begin OCR processing.
+              </p>
+            </div>
+          </div>
+
+          <div class="howto-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h4>
+                Copy the extracted text using the quick "<b>Copy</b>" button
+              </h4>
+              <p>
+                After processing, copy the extracted text with one click or
+                download it in your preferred format.
+              </p>
+            </div>
+          </div>
+
+          <div class="howto-step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+              <h4>
+                Click on "<b>Reload</b>" to refresh the tool and start again
+              </h4>
+              <p>Reset the tool to process more images or documents.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- What is OCR Section -->
     <section class="features-section">
       <div class="container">
@@ -347,14 +428,25 @@
         </div>
       </div>
     </section>
+    <section id="faq" class="faq-section" style="padding: 30px 0">
+      <div class="container" style="max-width: 1100px; margin: 0 auto">
+        <h2
+          class="section-title"
+          style="text-align: center; margin-bottom: 30px"
+        >
+          Frequently Asked Questions
+        </h2>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
-      <div class="container">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-
-        <div class="faq-two-column">
-          <!-- FAQ Items -->
+        <!-- Two Column Layout -->
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+          "
+        >
+          <!-- LEFT COLUMN: Your existing FAQ content -->
           <div class="faq-container">
             <div class="faq-item">
               <div class="faq-question">
@@ -439,37 +531,703 @@
             </div>
           </div>
 
-          <!-- FAQ Image -->
-          <div class="faq-image">
-            <img src="./ee.png" alt="FAQ Illustration" />
+          <!-- RIGHT COLUMN: Image -->
+          <div style="width: 90%; height: 100%">
+            <img
+              src="./ee.png"
+              alt="FAQ Illustration"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+              "
+            />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer Placeholder -->
+    <!-- Footer -->
     <div id="footer-placeholder"></div>
-
-    <!-- ===== JavaScript Files ===== -->
-    <!-- Utility and State Management -->
-    <script src="./js/utils.js"></script>
-
-    <!-- UI Management -->
-    <script src="./js/ui.js"></script>
-
-    <!-- Event Handlers -->
-    <script src="./js/handlers.js"></script>
-
-    <!-- OCR Processing -->
-    <script src="./js/ocr.js"></script>
-
-    <!-- Download Functionality -->
-    <script src="./js/download.js"></script>
-
-    <!-- Main Application -->
-    <script src="./js/app.js"></script>
-
-    <!-- Component Loader -->
     <script src="./js/components.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Elements
+        const fileInput = document.getElementById("fileInput");
+        const urlInput = document.getElementById("urlInput");
+        const uploadArea = document.getElementById("uploadArea");
+        const previewSection = document.getElementById("previewSection");
+        const imagePreview = document.getElementById("imagePreview");
+        const loaderSection = document.getElementById("loaderSection");
+        const loaderText = document.getElementById("loaderText");
+        const progressFill = document.getElementById("progressFill");
+        const resultsSection = document.getElementById("resultsSection");
+        const resultsText = document.getElementById("resultsText");
+        const submitBtn = document.getElementById("submitBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const copyBtn = document.getElementById("copyBtn");
+        const newExtractionBtn = document.getElementById("newExtractionBtn");
+        const downloadPdfBtn = document.getElementById("downloadPdfBtn");
+        const downloadWordBtn = document.getElementById("downloadWordBtn");
+        const downloadTxtBtn = document.getElementById("downloadTxtBtn");
+        const navToggle = document.querySelector(".nav-toggle");
+        const navbarNav = document.querySelector(".navbar-nav");
+        const faqItems = document.querySelectorAll(".faq-item");
+        const currentYearElement = document.getElementById("currentYear");
+        const fileInfo = document.getElementById("fileInfo");
+        const fileName = document.getElementById("fileName");
+        const fileSize = document.getElementById("fileSize");
+        const fileDimensions = document.getElementById("fileDimensions");
+        const optimizationInfo = document.getElementById("optimizationInfo");
+
+        // Update year automatically
+        if (currentYearElement) {
+          currentYearElement.textContent = new Date().getFullYear();
+        }
+
+        // State
+        let currentImage = null;
+        let currentFile = null;
+
+        // Event Listeners
+        fileInput.addEventListener("change", handleFileSelect);
+        urlInput.addEventListener("input", handleUrlInput);
+        uploadArea.addEventListener("dragover", handleDragOver);
+        uploadArea.addEventListener("dragleave", handleDragLeave);
+        uploadArea.addEventListener("drop", handleDrop);
+        submitBtn.addEventListener("click", processImage);
+        resetBtn.addEventListener("click", resetForm);
+        copyBtn.addEventListener("click", copyText);
+        newExtractionBtn.addEventListener("click", resetForm);
+        downloadPdfBtn.addEventListener("click", downloadAsPDF);
+        downloadWordBtn.addEventListener("click", downloadAsWord);
+        downloadTxtBtn.addEventListener("click", downloadAsTxt);
+        navToggle.addEventListener("click", toggleNav);
+
+        // Listen for paste event
+        document.addEventListener("paste", function (e) {
+          const clipboardData = e.clipboardData;
+          if (clipboardData.items) {
+            for (let i = 0; i < clipboardData.items.length; i++) {
+              const item = clipboardData.items[i];
+              if (item.type.indexOf("image") !== -1) {
+                const pastedImage = item.getAsFile();
+                handlePastedImage(pastedImage);
+              }
+            }
+          }
+        });
+
+        // FAQ functionality
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+          question.addEventListener("click", () => {
+            // Close all other FAQ items
+            faqItems.forEach((otherItem) => {
+              if (otherItem !== item) {
+                otherItem.classList.remove("active");
+              }
+            });
+
+            // Toggle current item
+            item.classList.toggle("active");
+          });
+        });
+
+        // Functions
+        function handleFileSelect(e) {
+          const file = e.target.files[0];
+          if (
+            file &&
+            (file.type.match("image.*") || file.type === "application/pdf")
+          ) {
+            if (validateFile(file)) {
+              currentFile = file;
+              if (file.type.match("image.*")) {
+                displayImage(file);
+              } else if (file.type === "application/pdf") {
+                displayPDF(file);
+              }
+            } else {
+              fileInput.value = ""; // Clear the invalid file
+            }
+          }
+        }
+
+        function handleUrlInput() {
+          const url = urlInput.value.trim();
+          if (url) {
+            displayImageFromUrl(url);
+          }
+        }
+
+        function handleDragOver(e) {
+          e.preventDefault();
+          uploadArea.classList.add("drag-over");
+        }
+
+        function handleDragLeave(e) {
+          e.preventDefault();
+          uploadArea.classList.remove("drag-over");
+        }
+
+        function handleDrop(e) {
+          e.preventDefault();
+          uploadArea.classList.remove("drag-over");
+          const files = e.dataTransfer.files;
+          if (
+            files.length > 0 &&
+            (files[0].type.match("image.*") ||
+              files[0].type === "application/pdf")
+          ) {
+            if (validateFile(files[0])) {
+              currentFile = files[0];
+              if (files[0].type.match("image.*")) {
+                displayImage(files[0]);
+              } else if (files[0].type === "application/pdf") {
+                displayPDF(files[0]);
+              }
+            }
+          }
+        }
+
+        function handlePastedImage(pastedImage) {
+          if (validateFile(pastedImage)) {
+            currentFile = pastedImage;
+            displayImage(pastedImage);
+          }
+        }
+
+        function validateFile(file) {
+          const maxSize = 10 * 1024 * 1024; // 10MB
+          const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+            "image/bmp",
+            "image/webp",
+            "application/pdf",
+          ];
+
+          if (file.size > maxSize) {
+            showError(
+              "File size too large. Please use files smaller than 10MB.",
+            );
+            return false;
+          }
+
+          if (!allowedTypes.includes(file.type)) {
+            showError(
+              "Invalid file type. Please use JPG, PNG, GIF, BMP, WebP images or PDF files.",
+            );
+            return false;
+          }
+
+          return true;
+        }
+
+        function displayImage(file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            currentImage = e.target.result;
+            imagePreview.src = currentImage;
+            previewSection.classList.remove("hidden");
+            submitBtn.disabled = false;
+
+            // Show file info
+            showFileInfo(file);
+
+            // Animate the preview section
+            previewSection.style.animation = "none";
+            setTimeout(() => {
+              previewSection.style.animation = "bounce 0.6s";
+            }, 10);
+          };
+          reader.readAsDataURL(file);
+        }
+
+        function displayPDF(file) {
+          // For PDF files, show a placeholder image
+          currentImage = null;
+          imagePreview.src =
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 24 24'%3E%3Cpath fill='%234361ee' d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-2 16h-2v-2h2v2zm0-4h-2v-4h2v4zm1-9V3.5L18.5 9H13z'/%3E%3C/svg%3E";
+          previewSection.classList.remove("hidden");
+          submitBtn.disabled = false;
+
+          // Show file info
+          showFileInfo(file);
+
+          // Animate the preview section
+          previewSection.style.animation = "none";
+          setTimeout(() => {
+            previewSection.style.animation = "bounce 0.6s";
+          }, 10);
+        }
+
+        function displayImageFromUrl(url) {
+          currentImage = url;
+          imagePreview.src = currentImage;
+          previewSection.classList.remove("hidden");
+          submitBtn.disabled = true; // Disable until we verify the image loads
+
+          // Hide file info for URLs
+          fileInfo.classList.add("hidden");
+
+          // Try to load the image to verify it's valid
+          const img = new Image();
+          img.onload = function () {
+            submitBtn.disabled = false;
+
+            // Animate the preview section
+            previewSection.style.animation = "none";
+            setTimeout(() => {
+              previewSection.style.animation = "bounce 0.6s";
+            }, 10);
+          };
+
+          img.onerror = function () {
+            showError(
+              "Failed to load image from URL. Please check the URL and try again.",
+            );
+            resetForm();
+          };
+
+          img.src = url;
+        }
+
+        function showFileInfo(file) {
+          fileName.textContent = `Name: ${file.name}`;
+          fileSize.textContent = `Size: ${formatFileSize(file.size)}`;
+
+          if (file.type.match("image.*")) {
+            // Get image dimensions
+            const img = new Image();
+            img.onload = function () {
+              fileDimensions.textContent = `Dimensions: ${img.width} × ${img.height}px`;
+
+              // Show optimization info if needed
+              if (file.size > 1024 * 1024 || img.width > 2000) {
+                optimizationInfo.textContent =
+                  "This image will be optimized for better processing.";
+              } else {
+                optimizationInfo.textContent = "";
+              }
+
+              fileInfo.classList.remove("hidden");
+            };
+            img.src = URL.createObjectURL(file);
+          } else {
+            fileDimensions.textContent = `Type: PDF Document`;
+            optimizationInfo.textContent =
+              "PDF files are supported for text extraction.";
+            fileInfo.classList.remove("hidden");
+          }
+        }
+
+        function formatFileSize(bytes) {
+          if (bytes === 0) return "0 Bytes";
+          const k = 1024;
+          const sizes = ["Bytes", "KB", "MB", "GB"];
+          const i = Math.floor(Math.log(bytes) / Math.log(k));
+          return (
+            parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
+          );
+        }
+
+        async function processImage() {
+          if (!currentImage && !currentFile) {
+            showError("Please select an image or PDF file first.");
+            return;
+          }
+
+          // Show loader
+          previewSection.classList.add("hidden");
+          loaderSection.classList.remove("hidden");
+          updateProgress(10);
+
+          try {
+            let imageToProcess = currentImage;
+
+            // If it's a file (not URL), optimize it first if it's an image
+            if (currentFile && currentFile.type.match("image.*")) {
+              updateProgress(30);
+              loaderText.textContent = "Optimizing image for processing...";
+
+              // Only optimize if file is larger than 1MB or dimensions are too large
+              if (currentFile.size > 1024 * 1024) {
+                try {
+                  imageToProcess = await optimizeImage(currentFile);
+                  updateProgress(50);
+                } catch (error) {
+                  console.error("Image optimization error:", error);
+                  // Continue with original image if optimization fails
+                }
+              }
+            } else if (currentFile && currentFile.type === "application/pdf") {
+              loaderText.textContent = "Processing PDF document...";
+              updateProgress(40);
+            }
+
+            updateProgress(70);
+            loaderText.textContent = "Extracting text from file...";
+
+            // Use the actual OCR functionality - EXACT SAME AS WORKING CODE
+            sendToOCR(imageToProcess);
+          } catch (error) {
+            console.error("File processing error:", error);
+            showError(
+              "Failed to process file. Please try with a smaller file.",
+            );
+          }
+        }
+
+        function optimizeImage(file, maxWidth = 1200, quality = 0.7) {
+          return new Promise((resolve) => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const img = new Image();
+
+            img.onload = function () {
+              // Calculate new dimensions while maintaining aspect ratio
+              let width = img.width;
+              let height = img.height;
+
+              if (width > maxWidth) {
+                height = (height * maxWidth) / width;
+                width = maxWidth;
+              }
+
+              canvas.width = width;
+              canvas.height = height;
+
+              // Draw and compress image
+              ctx.drawImage(img, 0, 0, width, height);
+
+              // Convert to compressed base64
+              const optimizedBase64 = canvas.toDataURL("image/jpeg", quality);
+              resolve(optimizedBase64);
+            };
+
+            img.src = URL.createObjectURL(file);
+          });
+        }
+
+        function updateProgress(percent) {
+          progressFill.style.width = `${percent}%`;
+        }
+
+        function sendToOCR(base64Image) {
+          const urlValue = urlInput.value;
+
+          // Get CSRF token with fallback
+          let csrfToken = "";
+          const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+          if (csrfMeta) {
+            csrfToken = csrfMeta.getAttribute("content");
+          }
+
+          // Show processing status for large images
+          if (base64Image && base64Image.length > 500000) {
+            // ~500KB base64 string
+            loaderText.textContent =
+              "Processing large image with extensive text... This may take a moment.";
+          }
+
+          // Make the OCR API call - EXACT SAME AS WORKING CODE
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "{{route('imagetotext_get_text')}}", true);
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/json;charset=UTF-8",
+          );
+
+          // Add CSRF token if available
+          if (csrfToken) {
+            xhr.setRequestHeader("X-CSRF-TOKEN", csrfToken);
+          }
+
+          // Add timeout for large images
+          xhr.timeout = 60000; // 60 seconds timeout
+
+          xhr.ontimeout = function () {
+            loaderSection.classList.add("hidden");
+            showError(
+              "Request timed out. The image might be too large or contain too much text. Please try with a smaller image.",
+            );
+          };
+
+          // Track upload progress
+          xhr.upload.onprogress = function (e) {
+            if (e.lengthComputable) {
+              const percentComplete = (e.loaded / e.total) * 100;
+              updateProgress(70 + percentComplete * 0.3); // 70-100% for upload
+            }
+          };
+
+          // Prepare data
+          const data = {
+            image: base64Image,
+            url: urlValue,
+          };
+
+          // For PDF files, we need to send the file differently
+          if (currentFile && currentFile.type === "application/pdf") {
+            // We need to handle PDF files differently
+            // For now, we'll send a placeholder and rely on backend to handle PDF
+            data.file_type = "pdf";
+            data.file_name = currentFile.name;
+          }
+
+          xhr.send(JSON.stringify(data));
+
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              loaderSection.classList.add("hidden");
+
+              if (xhr.status === 200) {
+                try {
+                  const response = JSON.parse(xhr.responseText);
+                  if (
+                    response.status === "200" ||
+                    response.status == 200 ||
+                    response.text
+                  ) {
+                    // Show actual extracted text from API
+                    resultsText.value =
+                      response.text ||
+                      response.extracted_text ||
+                      response.result ||
+                      "";
+                    resultsSection.classList.remove("hidden");
+
+                    // Animate the results section
+                    resultsSection.style.animation = "none";
+                    setTimeout(() => {
+                      resultsSection.style.animation = "bounce 0.6s";
+                    }, 10);
+                  } else {
+                    showError(
+                      "OCR processing failed. Please try again with a clearer image.",
+                    );
+                  }
+                } catch (error) {
+                  console.error("Parse error:", error, xhr.responseText);
+                  showError(
+                    "Failed to process the response. The extracted text might be too large.",
+                  );
+                }
+              } else if (xhr.status === 413) {
+                showError(
+                  "Image too large. Please use a smaller image or reduce quality.",
+                );
+              } else if (xhr.status === 500) {
+                showError(
+                  "Server error. The image might be too complex. Please try again.",
+                );
+              } else {
+                showError(
+                  "Request failed with status " +
+                    xhr.status +
+                    ". Please try again.",
+                );
+              }
+            }
+          };
+        }
+
+        function showError(message) {
+          Swal.fire({
+            title: "Error!",
+            text: message,
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+          resetForm();
+        }
+
+        function resetForm() {
+          fileInput.value = "";
+          urlInput.value = "";
+          currentImage = null;
+          currentFile = null;
+          previewSection.classList.add("hidden");
+          loaderSection.classList.add("hidden");
+          resultsSection.classList.add("hidden");
+          fileInfo.classList.add("hidden");
+          submitBtn.disabled = true;
+          updateProgress(0);
+        }
+
+        function copyText() {
+          resultsText.select();
+          document.execCommand("copy");
+
+          // Visual feedback
+          const originalText = copyBtn.innerHTML;
+          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+          }, 2000);
+        }
+
+        function downloadAsPDF() {
+          const text = resultsText.value;
+          if (!text.trim()) {
+            showError("No text to download. Please extract text first.");
+            return;
+          }
+
+          try {
+            // Create a new jsPDF instance
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add title
+            doc.setFontSize(16);
+            doc.text("Extracted Text from Image", 10, 10);
+
+            // Add current date
+            doc.setFontSize(10);
+            doc.text(
+              `Generated on: ${new Date().toLocaleDateString()}`,
+              10,
+              20,
+            );
+
+            // Add text
+            doc.setFontSize(12);
+            const lines = doc.splitTextToSize(text, 180);
+            doc.text(lines, 10, 30);
+
+            // Save the PDF
+            doc.save("extracted-text.pdf");
+
+            // Visual feedback
+            const originalText = downloadPdfBtn.innerHTML;
+            downloadPdfBtn.innerHTML =
+              '<i class="fas fa-check"></i> Downloaded!';
+            downloadPdfBtn.style.backgroundColor = "var(--success-color)";
+
+            setTimeout(() => {
+              downloadPdfBtn.innerHTML = originalText;
+              downloadPdfBtn.style.backgroundColor = "";
+            }, 2000);
+          } catch (error) {
+            console.error("PDF generation error:", error);
+            showError("Failed to generate PDF. Please try again.");
+          }
+        }
+
+        function downloadAsWord() {
+          const text = resultsText.value;
+          if (!text.trim()) {
+            showError("No text to download. Please extract text first.");
+            return;
+          }
+
+          try {
+            // Create Word document content
+            const content = `
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <meta charset="UTF-8">
+                <title>Extracted Text from Image</title>
+                <style>
+                  body { font-family: Arial, sans-serif; line-height: 1.5; margin: 20px; }
+                  h1 { color: #4361ee; }
+                  .date { color: #666; font-size: 0.9em; }
+                  .content { margin-top: 20px; white-space: pre-wrap; }
+                </style>
+              </head>
+              <body>
+                <h1>Extracted Text from Image</h1>
+                <p class="date">Generated on: ${new Date().toLocaleDateString()}</p>
+                <hr>
+                <div class="content">${text
+                  .replace(/</g, "&lt;")
+                  .replace(/>/g, "&gt;")
+                  .replace(/\n/g, "<br>")}</div>
+              </body>
+              </html>
+            `;
+
+            // Create blob and download
+            const blob = new Blob([content], { type: "application/msword" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "extracted-text.doc";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Visual feedback
+            const originalText = downloadWordBtn.innerHTML;
+            downloadWordBtn.innerHTML =
+              '<i class="fas fa-check"></i> Downloaded!';
+            downloadWordBtn.style.backgroundColor = "var(--success-color)";
+
+            setTimeout(() => {
+              downloadWordBtn.innerHTML = originalText;
+              downloadWordBtn.style.backgroundColor = "";
+            }, 2000);
+          } catch (error) {
+            console.error("Word generation error:", error);
+            showError("Failed to generate Word document. Please try again.");
+          }
+        }
+
+        function downloadAsTxt() {
+          const text = resultsText.value;
+          if (!text.trim()) {
+            showError("No text to download. Please extract text first.");
+            return;
+          }
+
+          try {
+            // Create header with date
+            const header = `Extracted Text from Image\nGenerated on: ${new Date().toLocaleDateString()}\n\n`;
+            const fullText = header + text;
+
+            // Create blob and download
+            const blob = new Blob([fullText], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "extracted-text.txt";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Visual feedback
+            const originalText = downloadTxtBtn.innerHTML;
+            downloadTxtBtn.innerHTML =
+              '<i class="fas fa-check"></i> Downloaded!';
+            downloadTxtBtn.style.backgroundColor = "var(--success-color)";
+
+            setTimeout(() => {
+              downloadTxtBtn.innerHTML = originalText;
+              downloadTxtBtn.style.backgroundColor = "";
+            }, 2000);
+          } catch (error) {
+            console.error("TXT generation error:", error);
+            showError("Failed to generate text file. Please try again.");
+          }
+        }
+
+        function toggleNav() {
+          navbarNav.classList.toggle("active");
+        }
+
+        // Reload page function from original code
+        window.reloadPage = function () {
+          location.reload();
+        };
+      });
+    </script>
   </body>
 </html>

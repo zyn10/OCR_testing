@@ -72,7 +72,9 @@ if (document.readyState === "loading") {
     await loadHeader();
     await loadFooter();
     initMobileMenu();
-    setupEventListeners();
+    if (typeof setupEventListeners === "function") {
+      setupEventListeners();
+    }
   });
 } else {
   // DOM is already loaded (if this script loads after HTML)
@@ -80,6 +82,8 @@ if (document.readyState === "loading") {
     await loadHeader();
     await loadFooter();
     initMobileMenu();
-    setupEventListeners();
+    if (typeof setupEventListeners === "function") {
+      setupEventListeners();
+    }
   })();
 }
