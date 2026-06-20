@@ -1,0 +1,18 @@
+DirectoryIndex index.html
+
+RewriteEngine On
+
+# Redirect legacy .html URLs to clean slugs.
+RewriteRule ^index\.html$ ./ [R=301,L]
+RewriteRule ^about\.html$ about/ [R=301,L]
+RewriteRule ^contact\.html$ contact/ [R=301,L]
+RewriteRule ^blog\.html$ blog/ [R=301,L]
+RewriteRule ^privacy-policy\.html$ privacy-policy/ [R=301,L]
+RewriteRule ^terms-and-conditions\.html$ terms-and-conditions/ [R=301,L]
+
+# Serve extensionless routes without changing the visible URL.
+RewriteRule ^about/?$ about.html [L]
+RewriteRule ^contact/?$ contact.html [L]
+RewriteRule ^blog/?$ blog.html [L]
+RewriteRule ^privacy-policy/?$ privacy-policy.html [L]
+RewriteRule ^terms-and-conditions/?$ terms-and-conditions.html [L]
